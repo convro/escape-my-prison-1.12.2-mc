@@ -66,10 +66,10 @@ public class ItemGrapplingHook extends Item {
                         owner.motionY = (dy / dist) * speed;
                         owner.motionZ = (dz / dist) * speed;
                     }
-                    // Sound
+                    // Sound (iron/metal impact — chain not available in 1.12.2)
                     world.playSound(null, hitPos,
-                            net.minecraft.init.SoundEvents.BLOCK_CHAIN_PLACE,
-                            SoundCategory.BLOCKS, 1.0F, 1.0F);
+                            net.minecraft.init.SoundEvents.BLOCK_ANVIL_LAND,
+                            SoundCategory.BLOCKS, 0.4F, 1.8F);
                 }
             }
             this.setDead();

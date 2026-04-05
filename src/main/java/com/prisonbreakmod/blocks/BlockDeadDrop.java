@@ -1,5 +1,6 @@
 package com.prisonbreakmod.blocks;
 
+import com.prisonbreakmod.gui.GuiHiddenInventory;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -34,6 +35,14 @@ public class BlockDeadDrop extends Block {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state,
                                      EntityPlayer player, EnumHand hand,
                                      EnumFacing facing, float hitX, float hitY, float hitZ) {
+        // Shift + empty hand → open personal hidden stash GUI
+        if (player.isSneaking() && player.getHeldItem(hand).isEmpty()) {
+            if (world.isRemote) {
+                GuiHiddenInventory.open(player);
+            }
+            return true;
+        }
+
         if (world.isRemote) return true;
         TileEntity te = world.getTileEntity(pos);
         if (!(te instanceof TileEntityDeadDrop)) return false;
