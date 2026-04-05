@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "prisonbreakmod",
+        "name": "Prison Break: Gulag",
+        "description": "AI-powered prison escape mod. 70 NPC. 10 000 bloków arktyki.",
+        "version": "1.0.0",
+        "mcversion": "1.12.2",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["Player"],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]
