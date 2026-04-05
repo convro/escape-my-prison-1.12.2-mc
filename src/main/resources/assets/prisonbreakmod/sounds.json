@@ -1,0 +1,22 @@
+{
+  "gunshot_pistol": {
+    "category": "player",
+    "sounds": [{"name": "prisonbreakmod:gunshot_pistol", "volume": 1.0, "pitch": 1.0, "stream": false}]
+  },
+  "gunshot_rifle": {
+    "category": "player",
+    "sounds": [{"name": "prisonbreakmod:gunshot_rifle", "volume": 1.5, "pitch": 0.9, "stream": false}]
+  },
+  "baton_hit": {
+    "category": "player",
+    "sounds": [{"name": "prisonbreakmod:baton_hit", "volume": 1.0, "pitch": 1.0, "stream": false}]
+  },
+  "tazer_zap": {
+    "category": "player",
+    "sounds": [{"name": "prisonbreakmod:tazer_zap", "volume": 1.0, "pitch": 1.5, "stream": false}]
+  },
+  "gas_spray": {
+    "category": "player",
+    "sounds": [{"name": "prisonbreakmod:gas_spray", "volume": 1.0, "pitch": 1.2, "stream": false}]
+  }
+}

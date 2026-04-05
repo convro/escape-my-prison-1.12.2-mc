@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://plugins.gradle.org/m2/' }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'com.github.johnrengelman.shadow:shadow:6.1.0'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+version = '1.0.0'
+group = 'com.prisonbreakmod'
+archivesBaseName = 'prisonbreakmod'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+minecraft {
+    version = '1.12.2-14.23.5.2860'
+    runDir = 'run'
+    mappings = 'stable_39'
+}
+
+configurations {
+    shadow
+    compile.extendsFrom(shadow)
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    deobfCompile 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
+    shadow 'com.squareup.okhttp3:okhttp:3.14.9'
+    shadow 'com.squareup.okio:okio:1.17.5'
+}
+
+shadowJar {
+    archiveName = 'prisonbreakmod-1.0.jar'
+    configurations = [project.configurations.shadow]
+    relocate 'okhttp3', 'com.prisonbreak.shadow.okhttp3'
+    relocate 'okio', 'com.prisonbreak.shadow.okio'
+}
+
+reobf {
+    shadowJar { }
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'  : 'prisonbreakmod',
+            'Specification-Vendor' : 'Player',
+            'Specification-Version': '1',
+            'Implementation-Title' : project.name,
+            'Implementation-Version': "${version}",
+            'Implementation-Vendor': 'Player',
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
